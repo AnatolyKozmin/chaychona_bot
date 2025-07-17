@@ -49,7 +49,7 @@ class Dish(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(100), index=True)
     description: Mapped[str] = mapped_column(Text)
-    cooking_time: Mapped[int | None] = mapped_column(nullable=True)  # в минутах
+    cooking_time: Mapped[int | None] = mapped_column(nullable=True)  # 
     is_available: Mapped[bool] = mapped_column(default=True)
     
     # Ингредиенты в JSON формате
@@ -59,7 +59,7 @@ class Dish(Base):
         comment="Список ингредиентов в формате [{'name':str, 'amount':float, 'unit':str}]"
     )
     
-    # Медиа-контент (Telegram file_id)
+    # Контент из телеги, это тот который по уникальному ID на их серваках
     dish_photo_id: Mapped[str] = mapped_column(String(255))
     ingredients_photo_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
     audio_guide_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
@@ -89,7 +89,6 @@ class TrainingSession(Base):
     score: Mapped[int | None] = mapped_column(nullable=True)
     details: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     
-    # Связи
     user: Mapped['User'] = relationship()
     dish: Mapped['Dish'] = relationship()
     
